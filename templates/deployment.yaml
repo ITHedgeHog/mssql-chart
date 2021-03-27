@@ -42,12 +42,12 @@ spec:
           livenessProbe:
             tcpSocket:
               port: 1433
-            initialDelay: 15
+            initialDelaySeconds: 15
             periodSeconds: 20
           readinessProbe:
             tcpSocket:
               port: 1433
-            initialDelay: 30
+            initialDelaySeconds: 30
             periodSeconds: 10
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
