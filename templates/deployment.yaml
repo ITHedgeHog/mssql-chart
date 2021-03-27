@@ -72,3 +72,6 @@ spec:
        - name: mssqldb
          persistentVolumeClaim:
           claimName: mssql-data
+       - name: mssql-config-volume
+         configMap:
+          name: mssql-config
