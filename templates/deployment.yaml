@@ -39,6 +39,18 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.containers.ports.containerPort}}
+          env:
+           - name: MSSQL_PID
+             value: "{{ .Values.MSSQL_PID.value}}"
+           - name: ACCEPT_EULA
+             value: "{{ .Values.ACCEPT_EULA.value | upper}}"
+           - name: MSSQL_AGENT_ENABLED
+             value: "{{ .Values.MSSQL_AGENT_ENABLED.value}}"
+           - name: SA_PASSWORD
+             valueFrom:
+              secretKeyRef:
+               name: mssql-secret
+               key: {{  template "mssql.sapassword" . }}
           livenessProbe:
             tcpSocket:
               port: 1433
